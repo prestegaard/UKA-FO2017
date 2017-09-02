@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RF_TEST", "RF_TEST\RF_TEST.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GettingStarted", "..\..\..\..\Arduino\libraries\RF24-master\examples\GettingStarted\GettingStarted.vcxproj", "{EEE1EB45-CD5B-47B0-A2CA-9DC1B328B85A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoReel100", "..\..\..\..\Arduino\libraries\FastLED-3.1.6\examples\DemoReel100\DemoReel100.vcxproj", "{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+		{EEE1EB45-CD5B-47B0-A2CA-9DC1B328B85A}.Debug|x86.ActiveCfg = Debug|Win32
+		{EEE1EB45-CD5B-47B0-A2CA-9DC1B328B85A}.Debug|x86.Build.0 = Debug|Win32
+		{EEE1EB45-CD5B-47B0-A2CA-9DC1B328B85A}.Release|x86.ActiveCfg = Release|Win32
+		{EEE1EB45-CD5B-47B0-A2CA-9DC1B328B85A}.Release|x86.Build.0 = Release|Win32
+		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Debug|x86.ActiveCfg = Debug|Win32
+		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Debug|x86.Build.0 = Debug|Win32
+		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Release|x86.ActiveCfg = Release|Win32
+		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C6DCEF9-E771-42F1-B34C-1737A844FDBA}
+	EndGlobalSection
+EndGlobal
