@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GettingStarted", "..\..\..\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoReel100", "..\..\..\..\Arduino\libraries\FastLED-3.1.6\examples\DemoReel100\DemoReel100.vcxproj", "{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LED_TEST", "LED_TEST\LED_TEST.vcxproj", "{D2B3A202-DD77-449C-A37E-86974A738652}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pyramide", "Pyramide\Pyramide.vcxproj", "{E45DF8A4-F355-417D-B168-5408D81392DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +31,14 @@ Global
 		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Debug|x86.Build.0 = Debug|Win32
 		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Release|x86.ActiveCfg = Release|Win32
 		{07DE8BE0-F038-4B90-80DE-931A6DE9CAA6}.Release|x86.Build.0 = Release|Win32
+		{D2B3A202-DD77-449C-A37E-86974A738652}.Debug|x86.ActiveCfg = Debug|Win32
+		{D2B3A202-DD77-449C-A37E-86974A738652}.Debug|x86.Build.0 = Debug|Win32
+		{D2B3A202-DD77-449C-A37E-86974A738652}.Release|x86.ActiveCfg = Release|Win32
+		{D2B3A202-DD77-449C-A37E-86974A738652}.Release|x86.Build.0 = Release|Win32
+		{E45DF8A4-F355-417D-B168-5408D81392DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{E45DF8A4-F355-417D-B168-5408D81392DB}.Debug|x86.Build.0 = Debug|Win32
+		{E45DF8A4-F355-417D-B168-5408D81392DB}.Release|x86.ActiveCfg = Release|Win32
+		{E45DF8A4-F355-417D-B168-5408D81392DB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RF_TEST.ino" />
+    <None Include="Pyramide.ino" />
   </ItemGroup>
  
 </Project>
