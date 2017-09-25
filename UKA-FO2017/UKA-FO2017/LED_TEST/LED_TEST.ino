@@ -24,27 +24,15 @@ FASTLED_USING_NAMESPACE
 #define DATA_PIN    3
 	//#define CLK_PIN   4
 #define LED_TYPE    WS2811
-#define COLOR_ORDER GRB
-#define NUM_LEDS    400 // 50 LEDS PER STRIP
+#define COLOR_ORDER RGB // Single ws2811 lights are rgb
+#define NUM_LEDS    50 // 50 LEDS PER STRIP
 CRGB leds[NUM_LEDS];
 
 #define BRIGHTNESS          96
-#define FRAMES_PER_SECOND  120
+#define FRAMES_PER_SECOND  600
 
-// ADDRESS SPACE PER SECTION PYRAMIDE
-/*
-Low
-l0s, l0m, l1s, l1mm, ...
-Mid
-m0s, m0m, m1s, m1m, ...
-High
-h0s, h0m, h1s, h1m, ...
-*/
+uint8_t gHue = 0; // rotating "base color" used by many of the patterns
 
-uint8_t addresses[3][8] = {
-	{L0s, L0m, L1s, L1m, L2m, L3s, L3m},
-	[]
-}
 
 void setup() {
 	delay(3000); // 3 second delay for recovery
@@ -59,5 +47,32 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-  
+	rainbow();
+	FastLED.show();
+	// insert a delay to keep the framerate modest
+	FastLED.delay(1000 / FRAMES_PER_SECOND);
+
+	// do some periodic updates
+	EVERY_N_MILLISECONDS(20) { gHue++; } // slowly cycle the "base color" through the rainbow
+}
+
+void rainbow()
+{
+	// FastLED's built-in rainbow generator
+	fill_rainbow(leds, NUM_LEDS, gHue, 5);
+}
+
+void confetti()
+{
+	// random colored speckles that blink in and fade smoothly
+	fadeToBlackBy(leds, NUM_LEDS, 10);
+	int pos = random16(NUM_LEDS);
+	leds[pos] += CHSV(gHue + random8(64), 200, 255);
+}
+void sinelon()
+{
+	// a colored dot sweeping back and forth, with fading trails
+	fadeToBlackBy(leds, NUM_LEDS, 20);
+	int pos = beatsin16(13, 0, NUM_LEDS - 1);
+	leds[pos] += CHSV(gHue, 255, 192);
 }
