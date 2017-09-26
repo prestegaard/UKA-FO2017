@@ -96,9 +96,18 @@ void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 		int attempt = 1;
 		while (!radio->write(&data, 6, broadcast)) {
 			Serial.print(F("Failed to send "));
-			Serial.println(attempt);
+			Serial.print(attempt);
+			Serial.print(F(", dst_id: "));
+			Serial.println(dst_id);
+
 			if (attempt >= 3) {
-				address = getNextId(dst_id);
+				uint64_t next_address = getNextId(dst_id);
+				if (next_address > address)
+					dst_id++;
+				else
+					dst_id--;
+				address = next_address;
+
 				if (address < NODE_TYPE_BASE_ADDRESS + n_nodes && address >= NODE_TYPE_BASE_ADDRESS)
 				{
 					radio->openWritingPipe(address);

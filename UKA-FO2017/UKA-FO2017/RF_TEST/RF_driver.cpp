@@ -11,12 +11,12 @@ Rf_driver::Rf_driver(int id, int n_nodes) : id(id), n_nodes(n_nodes)
 	radio->setPALevel(RF24_PA_MAX);
 	radio->setDataRate(RF24_250KBPS);
 	//radio->enableDynamicPayloads();
-	
+
 	// Some dummy address on pipe 0
 	radio->openReadingPipe(0, NODE_TYPE_BASE_ADDRESS + 0XAA);
-	radio->openReadingPipe(1,NODE_TYPE_BASE_ADDRESS + id);
+	radio->openReadingPipe(1, NODE_TYPE_BASE_ADDRESS + id);
 	radio->openReadingPipe(2, NODE_TYPE_BASE_ADDRESS + ADDRESS_BROADCAST_OFFSET);
-	
+
 	radio->enableDynamicAck();
 	radio->setAutoAck(2, false);
 
@@ -48,33 +48,33 @@ uint64_t Rf_driver::getNextId(uint8_t current_id)
 		}
 		else if (current_mode == MSG_LOOP_DOWN)
 		{
-			if (current_id -1 < 0)
-				return NODE_TYPE_BASE_ADDRESS + n_nodes -1;
+			if (current_id - 1 < 0)
+				return NODE_TYPE_BASE_ADDRESS + n_nodes - 1;
 			return NODE_TYPE_BASE_ADDRESS + current_id - 1;
 		}
 	}
-	return NODE_TYPE_BASE_ADDRESS+ADDRESS_BROADCAST_OFFSET;
+	return NODE_TYPE_BASE_ADDRESS + ADDRESS_BROADCAST_OFFSET;
 }
 
 void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 {
-	
+
 
 	// Serialize payload
 	byte data[] = { payload.sender_id, payload.msg_type, payload.time, payload.hue, payload.saturation, payload.value };
 
 	// Set address
 	uint64_t address = NODE_TYPE_BASE_ADDRESS + dst_id;
-	
-	
+
+
 	// Stop listening
 	radio->stopListening();
-	
+
 	// Broadcast or targeted message
 	bool broadcast = (dst_id == ADDRESS_BROADCAST_OFFSET) ? (true) : (false);
-	if (broadcast) 
-	{ 
-		radio->setAutoAck(0, 0); 
+	if (broadcast)
+	{
+		radio->setAutoAck(0, 0);
 		delay(1);
 		radio->openWritingPipe(address);
 		// Broadcast message 5 times
@@ -84,7 +84,7 @@ void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 		delay(1);
 		radio->write(&data, 6, broadcast);
 		delay(1);
-		radio->write(&data, 6, broadcast); 
+		radio->write(&data, 6, broadcast);
 		delay(1);
 		radio->write(&data, 6, broadcast);
 	}
@@ -96,9 +96,18 @@ void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 		int attempt = 1;
 		while (!radio->write(&data, 6, broadcast)) {
 			Serial.print(F("Failed to send "));
-			Serial.println(attempt);
+			Serial.print(attempt);
+			Serial.print(F(", dst_id: "));
+			Serial.println(dst_id);
+
 			if (attempt >= 3) {
-				address = getNextId(dst_id);
+				uint64_t next_address = getNextId(dst_id);
+				if (next_address > address)
+					dst_id++;
+				else
+					dst_id--;
+				address = next_address;
+
 				if (address < NODE_TYPE_BASE_ADDRESS + n_nodes && address >= NODE_TYPE_BASE_ADDRESS)
 				{
 					radio->openWritingPipe(address);
@@ -130,7 +139,7 @@ bool Rf_driver::read(byte* pipe, rf_message_t * payload)
 		payload->hue = buf[3];
 		payload->saturation = buf[4];
 		payload->value = buf[5];
-		
+
 		return true;
 	}
 	return false;
