@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LED_TEST", "LED_TEST\LED_TE
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pyramide", "Pyramide\Pyramide.vcxproj", "{E45DF8A4-F355-417D-B168-5408D81392DB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LysendeBokser", "LysendeBokser\LysendeBokser.vcxproj", "{CE4CD33A-1DAF-4B5A-AD2E-351CCFF3C623}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -39,6 +41,10 @@ Global
 		{E45DF8A4-F355-417D-B168-5408D81392DB}.Debug|x86.Build.0 = Debug|Win32
 		{E45DF8A4-F355-417D-B168-5408D81392DB}.Release|x86.ActiveCfg = Release|Win32
 		{E45DF8A4-F355-417D-B168-5408D81392DB}.Release|x86.Build.0 = Release|Win32
+		{CE4CD33A-1DAF-4B5A-AD2E-351CCFF3C623}.Debug|x86.ActiveCfg = Debug|Win32
+		{CE4CD33A-1DAF-4B5A-AD2E-351CCFF3C623}.Debug|x86.Build.0 = Debug|Win32
+		{CE4CD33A-1DAF-4B5A-AD2E-351CCFF3C623}.Release|x86.ActiveCfg = Release|Win32
+		{CE4CD33A-1DAF-4B5A-AD2E-351CCFF3C623}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
