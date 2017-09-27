@@ -18,7 +18,7 @@
 #define NODE_TYPE_BENCH 0xF0F0F0F100
 
 // Change me to define what type of node I am
-#define NODE_TYPE_BASE_ADDRESS NODE_TYPE_BENCH
+#define NODE_TYPE_BASE_ADDRESS NODE_TYPE_BOX
 
 #define ADDRESS_BROADCAST_OFFSET 0XF
 

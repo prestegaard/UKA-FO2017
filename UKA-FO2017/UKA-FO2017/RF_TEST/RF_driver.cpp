@@ -65,7 +65,7 @@ void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 
 	// Set address
 	uint64_t address = NODE_TYPE_BASE_ADDRESS + dst_id;
-
+	current_mode = payload.msg_type;
 
 	// Stop listening
 	radio->stopListening();
@@ -107,7 +107,8 @@ void Rf_driver::write(rf_message_t payload, uint8_t dst_id)
 				else
 					dst_id--;
 				address = next_address;
-
+				Serial.print(F("NEXT ID: "));
+				Serial.println(dst_id);
 				if (address < NODE_TYPE_BASE_ADDRESS + n_nodes && address >= NODE_TYPE_BASE_ADDRESS)
 				{
 					radio->openWritingPipe(address);

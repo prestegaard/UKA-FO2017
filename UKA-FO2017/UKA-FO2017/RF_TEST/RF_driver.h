@@ -4,9 +4,9 @@
 #define _RF_DRIVER_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+#include "Arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 #include <SPI.h>
 
@@ -18,7 +18,7 @@
 #define NODE_TYPE_BENCH 0xF0F0F0F100
 
 // Change me to define what type of node I am
-#define NODE_TYPE_BASE_ADDRESS NODE_TYPE_BENCH
+#define NODE_TYPE_BASE_ADDRESS NODE_TYPE_BOX
 
 #define ADDRESS_BROADCAST_OFFSET 0XF
 
@@ -43,7 +43,7 @@ struct rf_message_t
 	uint8_t sender_id;
 	uint8_t msg_type;
 	uint8_t time; // Function varies with msg_type
-	
+
 	uint8_t hue;
 	uint8_t saturation;
 	uint8_t value;
