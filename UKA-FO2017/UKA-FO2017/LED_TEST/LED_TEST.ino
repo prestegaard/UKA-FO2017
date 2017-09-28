@@ -24,11 +24,11 @@ FASTLED_USING_NAMESPACE
 #define DATA_PIN    3
 	//#define CLK_PIN   4
 #define LED_TYPE    WS2811
-#define COLOR_ORDER RGB // Single ws2811 lights are rgb
+#define COLOR_ORDER BRG // Single ws2811 lights are rgb, strips are brg
 #define NUM_LEDS    50 // 50 LEDS PER STRIP
 CRGB leds[NUM_LEDS];
 
-#define BRIGHTNESS          96
+#define BRIGHTNESS          255
 #define FRAMES_PER_SECOND  600
 
 uint8_t gHue = 0; // rotating "base color" used by many of the patterns
@@ -47,7 +47,7 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	rainbow();
+	juggle();
 	FastLED.show();
 	// insert a delay to keep the framerate modest
 	FastLED.delay(1000 / FRAMES_PER_SECOND);
@@ -75,4 +75,14 @@ void sinelon()
 	fadeToBlackBy(leds, NUM_LEDS, 20);
 	int pos = beatsin16(13, 0, NUM_LEDS - 1);
 	leds[pos] += CHSV(gHue, 255, 192);
+}
+
+void juggle() {
+	// eight colored dots, weaving in and out of sync with each other
+	fadeToBlackBy(leds, NUM_LEDS, 20);
+	byte dothue = 0;
+	for (int i = 0; i < 16; i++) {
+		leds[beatsin16(i + 7, 0, NUM_LEDS - 1)] |= CHSV(dothue, 200, 255);
+		dothue += 32;
+	}
 }

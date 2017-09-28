@@ -59,7 +59,6 @@ uint8_t addresses[3][8] = {
 
 void blink_each_section_round_upwards(struct CRGB * LED, uint8_t speed, uint8_t color);
 void blink_each_section_upwards(uint8_t speed, uint8_t color);
-void blink_each_section_upwards(uint8_t speed, uint8_t color);
 
 #endif
 
