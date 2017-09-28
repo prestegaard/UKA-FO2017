@@ -401,7 +401,7 @@ void loop() {
 		program_end_time = millis();
 
 	}
-	if (((millis() - msg_recv_start_time > 60 * 1000) || (initial_boot == true)) && BOX_ID != 0)
+	if (((millis() - msg_recv_start_time > 60 * 1000) || (initial_boot == true)) && (BOX_ID != 0))
 	{ // If nothing received for one minute or no incomming messages on radio
 		
 		if (program == 0) // RAINBOW
