@@ -11,54 +11,38 @@
 
 #include <FastLED.h>
 
-#define NUM_LEDS    261
+#define DATA_PIN    3
+#define LED_TYPE    WS2811
+#define COLOR_ORDER BRG // Single ws2811 lights are rgb, strips are brg
+#define NUM_LEDS    150 // 50 LEDS PER STRIP 
+#define BRIGHTNESS         255
+#define FRAMES_PER_SECOND  600
 
-// side = 25, corner = 5
-#define L0s 0
-#define L0m 25
-#define L1s 30
-#define L1m 55
-#define L2s 60
-#define L2m 65
-#define L3s 70
-#define L3m 75
-#define L4s 80
-#define L4m 105
-
-// side = 15, corner = 4
-#define M0s 110
-#define M0m 125
-#define M1s 129
-#define M1m 144
-#define M2s 149
-#define M2m 153
-#define M3s 157
-#define M3m 172
-#define M4s 176
-#define M4m 191
-
-// side = 10, corner = 3
-#define H0s 196
-#define H0m 206
-#define H1s 209
-#define H1m 219
-#define H2s 222
-#define H2m 232
-#define H3s 235
-#define H3m 245
-#define H4s 248
-#define H4m 258
-
-uint8_t addresses[3][8] = {
-	{ L0s, L0m, L1s, L1m, L2m, L3s, L3m },
-	{ M0s, M0m, M1s, M1m, M2m, M3s, M3m },
-	{ H0s, H0m, H1s, H1m, H2m, H3s, H3m }
-};
+#define LOW_START 0
+#define LOW_END 49
+#define MID_START 50
+#define MID_END 74
+#define TOP_START 75
+#define TOP_END 99
+#define BOX_START 100
+#define BOX_END 149
 
 
+// Set color functions
+void set_section(CRGB* leds, uint16_t section_start, uint16_t section_end, CHSV color);
+void set_all(CRGB* leds, CHSV color);
 
-void blink_each_section_round_upwards(struct CRGB * LED, uint8_t speed, uint8_t color);
-void blink_each_section_upwards(uint8_t speed, uint8_t color);
+// Fade color functions
+void fade_section(CRGB* leds, uint16_t section_start, uint16_t section_end, uint16_t delay_time, CHSV color);
+void fade_all(CRGB* leds, uint16_t delay_time, CHSV color);
 
+// Fill color functions
+void fill_section(CRGB* leds, uint16_t section_start, uint16_t section_end, uint16_t delay_time, CHSV color);
+// Show functions
+void blink_section(CRGB* leds, uint16_t section_start, uint16_t section_end, uint16_t delay_time, CHSV color);
+void fade_color_upwards(CRGB* leds, uint16_t delay_time, CHSV color);
+void fade_color_downwards(CRGB* leds, uint16_t delay_time, CHSV color);
+void sinelon(CRGB* leds, CHSV color);
+void juggle(CRGB* leds);
 #endif
 

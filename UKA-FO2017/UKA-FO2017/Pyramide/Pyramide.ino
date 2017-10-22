@@ -45,7 +45,40 @@ void setup() {
 	FastLED.setBrightness(BRIGHTNESS);
 }
 
+uint8_t gHue = 0;
 // the loop function runs over and over again until power down or reset
 void loop() {
+	// Set each section with same color
+	set_section(leds, LOW_START, LOW_END, CHSV(gHue, 255, 255));
+	delay(1000);
+	set_section(leds, MID_START, MID_END, CHSV(gHue, 255, 255));
+	delay(1000);
+	set_section(leds, TOP_START, TOP_END, CHSV(gHue, 255, 255));
+	delay(1000);
+	set_section(leds, BOX_START, BOX_END, CHSV(gHue, 255, 255));
+	delay(5000);
+
+	// Fill each section with different color upwards
+	gHue += 50;
+	fill_section(leds, LOW_START, LOW_END, 50, CHSV(gHue, 255, 255));
+	delay(1000);
+
+	gHue += 50;
+	fill_section(leds, MID_START, MID_END, 50, CHSV(gHue, 255, 255));
+	delay(1000);
+
+	gHue += 50;
+	fill_section(leds, TOP_START, TOP_END, 50, CHSV(gHue, 255, 255));
+	delay(1000);
+
+	// Run some sinelon loop
+	sinelon(leds, CHSV(gHue, 255, 255));
+
+	// Fade whole pyramide into new color
+	fade_all(leds, 20, CHSV(gHue, 255, 255));
+	delay(2000);
+	gHue += 50;
+	
+	juggle(leds);
 
 }
